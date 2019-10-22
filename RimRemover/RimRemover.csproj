@@ -30,22 +30,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\illusion\Koikatu\Koikatu_Data\Managed\0Harmony.dll</HintPath>
+      <HintPath>..\paket-files\IllusionMods\IllusionLibs\lib\BepInEx\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\illusion\Koikatu\Koikatu_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\paket-files\IllusionMods\IllusionLibs\lib\Koikatu\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\..\..\..\illusion\Koikatu\Koikatu_Data\Managed\BepInEx.dll</HintPath>
+      <HintPath>..\paket-files\IllusionMods\IllusionLibs\lib\BepInEx\BepInEx.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\illusion\Koikatu\Koikatu_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\paket-files\IllusionMods\IllusionLibs\lib\Koikatu\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

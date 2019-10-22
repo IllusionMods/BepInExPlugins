@@ -1,39 +1,41 @@
-﻿using Harmony;
-using BepInEx;
+﻿using BepInEx;
+using HarmonyLib;
 using System;
 using System.Reflection;
 using UnityEngine;
 
 namespace BepisPlugin
 {
-
-    [BepInPlugin(GUID: "aa2g.kant.rim.remover", Name: "Rim Remover", Version: "1.0")]
+    [BepInPlugin(GUID, "Rim Remover", Version)]
     public class RimRemover : BaseUnityPlugin
     {
-        void Awake()
+        public const string GUID = "aa2g.kant.rim.remover";
+        public const string Version = "1.0.1";
+
+        private void Awake()
         {
-            var harmony = HarmonyInstance.Create("aa2g.kant.rim.remover");
+            var harmony = new Harmony("aa2g.kant.rim.remover");
 
             MethodInfo original = AccessTools.Method(typeof(ChaControl), "LoadCharaFbxDataAsync");
-            var prefix = new HarmonyMethod(typeof(RimRemover).GetMethod("RemoveRim"));
+            var prefix = new HarmonyMethod(AccessTools.Method(GetType(), nameof(RemoveRim)));
             harmony.Patch(original, prefix, /*postfix*/null);
         }
 
-        public static void RemoveRim(ChaControl __instance, ref Action<GameObject> actObj)
+        private static void RemoveRim(ChaControl __instance, ref Action<GameObject> actObj)
         {
             Action<GameObject> oldAct = actObj;
             actObj = delegate (GameObject o)
             {
                 oldAct(o);
-                if (o == null)
+                if(o == null)
                     return;
                 var renderers = o.GetComponentsInChildren<Renderer>();
-                foreach (var r in renderers)
+                foreach(var r in renderers)
                     r.material.SetFloat("_rimV", 0f);
                 //oldAct(o);
             };
         }
 
-   }
+    }
 
 }
