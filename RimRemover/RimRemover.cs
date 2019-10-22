@@ -1,7 +1,7 @@
 ﻿using BepInEx;
+using BepInEx.Harmony;
 using HarmonyLib;
 using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace RimRemover
@@ -12,30 +12,24 @@ namespace RimRemover
         public const string GUID = "aa2g.kant.rim.remover";
         public const string Version = "1.0.1";
 
-        private void Awake()
-        {
-            var harmony = new Harmony("aa2g.kant.rim.remover");
+        internal void Awake() => HarmonyWrapper.PatchAll(typeof(Hooks));
 
-            MethodInfo original = AccessTools.Method(typeof(ChaControl), "LoadCharaFbxDataAsync");
-            var prefix = new HarmonyMethod(AccessTools.Method(GetType(), nameof(RemoveRim)));
-            harmony.Patch(original, prefix, /*postfix*/null);
-        }
-
-        private static void RemoveRim(ChaControl __instance, ref Action<GameObject> actObj)
+        internal static class Hooks
         {
-            Action<GameObject> oldAct = actObj;
-            actObj = delegate (GameObject o)
+            [HarmonyPrefix, HarmonyPatch(typeof(ChaControl), "LoadCharaFbxDataAsync")]
+            internal static void RemoveRim(ref Action<GameObject> actObj)
             {
-                oldAct(o);
-                if(o == null)
-                    return;
-                var renderers = o.GetComponentsInChildren<Renderer>();
-                foreach(var r in renderers)
-                    r.material.SetFloat("_rimV", 0f);
-                //oldAct(o);
-            };
+                Action<GameObject> oldAct = actObj;
+                actObj = delegate (GameObject o)
+                {
+                    oldAct(o);
+                    if (o == null)
+                        return;
+                    var renderers = o.GetComponentsInChildren<Renderer>();
+                    foreach (var r in renderers)
+                        r.material.SetFloat("_rimV", 0f);
+                };
+            }
         }
-
     }
-
 }
