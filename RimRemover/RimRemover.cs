@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace BepisPlugin
+namespace RimRemover
 {
     [BepInPlugin(GUID, "Rim Remover", Version)]
     public class RimRemover : BaseUnityPlugin
