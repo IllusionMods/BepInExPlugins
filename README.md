@@ -1,5 +1,5 @@
 # RimRemover
-RimRemover for Koikatsu and EmotionCreators
+RimRemover for Koikatsu and EmotionCreators. Removes rim lighting from characters.
 
 ![Comparison](https://github.com/IllusionMods/RimRemover/blob/master/comparison.png)
 
