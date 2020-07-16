@@ -1,6 +1,8 @@
 # RimRemover
 RimRemover for Koikatsu and EmotionCreators
 
+![Comparison](https://github.com/IllusionMods/RimRemover/blob/master/comparison.png)
+
 ## How to install
 1. Install [BepInEx](https://github.com/BepInEx/BepInEx/releases)
 2. Download the [latest release](../../releases)
