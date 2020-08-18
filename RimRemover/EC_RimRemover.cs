@@ -13,7 +13,11 @@ namespace EC_RimRemover
 
         private void Awake()
         {
-            Harmony.CreateAndPatchAll(typeof(RimRemover));
+            var s = Config.Bind("General", "Disable Rim Light", false, "Turn off rim light visible around the outline of characters and items." +
+                                                                       "\nGives the game a more flat-shaded look. It can make some mods from KK look better." +
+                                                                       "\nRestart the game to apply changes.");
+
+            if (s.Value) Harmony.CreateAndPatchAll(typeof(RimRemover));
         }
 
         [HarmonyPrefix]
