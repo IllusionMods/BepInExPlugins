@@ -9,7 +9,7 @@ namespace RimRemover
     public class RimRemover : BaseUnityPlugin
     {
         public const string GUID = "aa2g.kant.rim.remover";
-        public const string Version = "1.0.1";
+        public const string Version = "1.1";
 
         private static int _rimVid;
 
