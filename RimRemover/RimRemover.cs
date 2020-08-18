@@ -1,7 +1,6 @@
 ﻿using BepInEx;
-using BepInEx.Harmony;
-using HarmonyLib;
 using System;
+using HarmonyLib;
 using UnityEngine;
 
 namespace RimRemover
@@ -12,24 +11,33 @@ namespace RimRemover
         public const string GUID = "aa2g.kant.rim.remover";
         public const string Version = "1.0.1";
 
-        internal void Awake() => HarmonyWrapper.PatchAll(typeof(Hooks));
+        private static int _rimVid;
 
-        internal static class Hooks
+        private void Awake()
         {
-            [HarmonyPrefix, HarmonyPatch(typeof(ChaControl), "LoadCharaFbxDataAsync")]
-            internal static void RemoveRim(ref Action<GameObject> actObj)
+            var s = Config.Bind("General", "Disable Rim Light", false, "Turn off rim light visible around the outline of characters and items." +
+                                                                       "\nGives the game a more flat-shaded look. It can make some mods from KK look better." +
+                                                                       "\nRestart the game to apply changes.");
+            if (s.Value)
             {
-                Action<GameObject> oldAct = actObj;
-                actObj = delegate (GameObject o)
-                {
-                    oldAct(o);
-                    if (o == null)
-                        return;
-                    var renderers = o.GetComponentsInChildren<Renderer>();
-                    foreach (var r in renderers)
-                        r.material.SetFloat("_rimV", 0f);
-                };
+                _rimVid = Shader.PropertyToID("_rimV");
+                Harmony.CreateAndPatchAll(typeof(RimRemover));
             }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ChaControl), "LoadCharaFbxDataAsync")]
+        private static void RemoveRim(ChaControl __instance, ref Action<GameObject> actObj)
+        {
+            var oldAct = actObj;
+            actObj = delegate (GameObject o)
+            {
+                oldAct(o);
+                if (o == null) return;
+                var renderers = o.GetComponentsInChildren<Renderer>();
+                foreach (var r in renderers)
+                    r.material.SetFloat(_rimVid, 0f);
+            };
         }
     }
 }
