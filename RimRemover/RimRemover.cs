@@ -16,7 +16,7 @@ namespace RimRemover
         private void Awake()
         {
             var s = Config.Bind("General", "Disable Rim Light", false, "Turn off rim light visible around the outline of characters and items." +
-                                                                       "\nGives the game a more flat-shaded look. It can make some mods from KK look better." +
+                                                                       "\nGives the game a more flat-shaded look. It can make some mods from KK look better in EC." +
                                                                        "\nRestart the game to apply changes.");
             if (s.Value)
             {
