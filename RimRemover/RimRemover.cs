@@ -35,9 +35,14 @@ namespace RimRemover
                 {
                     oldAct(o);
 
-                    foreach (var r in o?.GetComponentsInChildren<Renderer>())
-                        foreach (var mat in r?.materials)
-                            mat.SetFloat("_rimV", 0f);
+                    if (o != null)
+                    {
+                        foreach (var r in o.GetComponentsInChildren<Renderer>())
+                            if (r != null && r.materials != null)
+                                foreach (var mat in r.materials)
+                                    if (mat != null)
+                                        mat.SetFloat("_rimV", 0f);
+                    }
                 };
             }
         }
