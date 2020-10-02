@@ -33,7 +33,7 @@ namespace RimRemover
                 var oldAct = actObj;
                 actObj = delegate (GameObject o)
                 {
-                    oldAct(o);
+                    oldAct?.Invoke(o);
 
                     if (o != null)
                     {
