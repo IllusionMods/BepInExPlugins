@@ -6,27 +6,32 @@ using UnityEngine;
 
 namespace RimRemover
 {
-    [BepInPlugin(GUID, "Rim Remover", Version)]
+    [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class RimRemover : BaseUnityPlugin
     {
-        public const string GUID = "aa2g.kant.rim.remover";
-        public const string Version = "1.1";
+        public const string PluginGUID = "aa2g.kant.rim.remover";
+        public const string PluginName = "Rim Remover";
+        public const string PluginVersion = "1.2";
 
         public static ConfigEntry<bool> ConfigDisableRim { get; private set; }
 
-        internal void Awake()
+        private void Awake()
         {
             ConfigDisableRim = Config.Bind("General", "Disable Rim Light", false, "Turn off rim light visible around the outline of characters and items." +
-                                                      "\nGives the game a more flat-shaded look. It can make some mods from KK look better in EC." +
+                                                      "\nGives the game a more flat-shaded look." +
                                                       "\nReload the character or scene to apply changes.");
 
             Harmony.CreateAndPatchAll(typeof(Hooks));
         }
 
-        internal static class Hooks
+        private static class Hooks
         {
-            [HarmonyPrefix, HarmonyPatch(typeof(ChaControl), "LoadCharaFbxDataAsync")]
-            internal static void RemoveRim(ref Action<GameObject> actObj)
+            [HarmonyPrefix]
+            [HarmonyPatch(typeof(ChaControl), nameof(ChaControl.LoadCharaFbxDataAsync))]
+#if KKS
+            [HarmonyPatch(typeof(ChaControl), nameof(ChaControl.LoadCharaFbxDataNoAsync))]
+#endif
+            private static void RemoveRim(ref Action<GameObject> actObj)
             {
                 if (!ConfigDisableRim.Value) return;
 

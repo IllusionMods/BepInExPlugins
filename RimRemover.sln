@@ -1,20 +1,40 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimRemover", "RimRemover\RimRemover.csproj", "{D24BC37F-09A9-445B-8F5C-8D6E2980380A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KK_RimRemover", "src\RimRemover.KK\KK_RimRemover.csproj", "{06E468C5-A05C-4E94-B29D-71A2470BB606}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Core_RimRemover", "src\RimRemover.Core\Core_RimRemover.shproj", "{08011FEB-75A5-473C-8151-41E21CF2ED8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EC_RimRemover", "src\RimRemover.EC\EC_RimRemover.csproj", "{1A395C44-E911-4B26-AEBE-E8E6CBEA6214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKS_RimRemover", "src\RimRemover.KKS\KKS_RimRemover.csproj", "{95556AA7-FCA6-4814-9CD0-78BBE42DF8B5}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\RimRemover.Core\RimRemover.Core.projitems*{06e468c5-a05c-4e94-b29d-71a2470bb606}*SharedItemsImports = 4
+		src\RimRemover.Core\RimRemover.Core.projitems*{08011feb-75a5-473c-8151-41e21cf2ed8b}*SharedItemsImports = 13
+		src\RimRemover.Core\RimRemover.Core.projitems*{1a395c44-e911-4b26-aebe-e8e6cbea6214}*SharedItemsImports = 4
+		src\RimRemover.Core\RimRemover.Core.projitems*{95556aa7-fca6-4814-9cd0-78bbe42df8b5}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D24BC37F-09A9-445B-8F5C-8D6E2980380A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D24BC37F-09A9-445B-8F5C-8D6E2980380A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D24BC37F-09A9-445B-8F5C-8D6E2980380A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D24BC37F-09A9-445B-8F5C-8D6E2980380A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E468C5-A05C-4E94-B29D-71A2470BB606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E468C5-A05C-4E94-B29D-71A2470BB606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E468C5-A05C-4E94-B29D-71A2470BB606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E468C5-A05C-4E94-B29D-71A2470BB606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A395C44-E911-4B26-AEBE-E8E6CBEA6214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A395C44-E911-4B26-AEBE-E8E6CBEA6214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A395C44-E911-4B26-AEBE-E8E6CBEA6214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A395C44-E911-4B26-AEBE-E8E6CBEA6214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95556AA7-FCA6-4814-9CD0-78BBE42DF8B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95556AA7-FCA6-4814-9CD0-78BBE42DF8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95556AA7-FCA6-4814-9CD0-78BBE42DF8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95556AA7-FCA6-4814-9CD0-78BBE42DF8B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
